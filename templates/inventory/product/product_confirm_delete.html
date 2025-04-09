@@ -1,0 +1,40 @@
+<!-- templates/inventory/product_confirm_delete.html -->
+{% extends 'base.html' %}
+
+{% block title %}Excluir {{ product.name }}{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'inventory:product_list' %}">Produtos</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'inventory:product_detail' product.id %}">{{ product.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Excluir</li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h3 class="card-title mb-0"><i class="fas fa-exclamation-triangle"></i> Excluir Produto</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Tem certeza que deseja excluir o produto <strong>"{{ product.name }}"</strong>?</p>
+                <p>Essa ação não poderá ser desfeita e todos os detalhes associados serão removidos permanentemente.</p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-danger flex-grow-1">
+                            <i class="fas fa-trash"></i> Sim, excluir
+                        </button>
+                        <a href="{% url 'inventory:product_detail' product.id %}" class="btn btn-secondary flex-grow-1">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

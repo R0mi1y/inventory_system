@@ -1,0 +1,63 @@
+<!-- templates/inventory/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Início - Sistema de Estoque{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3 text-center">
+        <h1 class="display-4 mb-4">Bem-vindo ao Sistema de Estoque</h1>
+        <p class="lead">Uma solução completa para gerenciar seu inventário de forma simples e eficiente.</p>
+        
+        {% if user.is_authenticated %}
+        <div class="d-grid gap-2 col-md-8 mx-auto mt-4">
+            <a href="{% url 'inventory:product_list' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-boxes"></i> Ver meu estoque
+            </a>
+            <a href="{% url 'inventory:product_create' %}" class="btn btn-success btn-lg">
+                <i class="fas fa-plus"></i> Adicionar produto
+            </a>
+        </div>
+        {% else %}
+        <div class="d-grid gap-2 col-md-8 mx-auto mt-4">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">
+                <i class="fas fa-sign-in-alt"></i> Entrar
+            </a>
+            <a href="{% url 'inventory:register' %}" class="btn btn-outline-primary btn-lg">
+                <i class="fas fa-user-plus"></i> Cadastrar-se
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-box-open fa-4x text-primary mb-3"></i>
+                <h3 class="card-title">Controle de Produtos</h3>
+                <p class="card-text">Cadastre e gerencie todos os seus produtos com facilidade.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-tags fa-4x text-success mb-3"></i>
+                <h3 class="card-title">Organização por Tags</h3>
+                <p class="card-text">Categorize seus produtos usando tags para facilitar a busca.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-barcode fa-4x text-info mb-3"></i>
+                <h3 class="card-title">Detalhes Específicos</h3>
+                <p class="card-text">Registre detalhes únicos como números de série e informações adicionais.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

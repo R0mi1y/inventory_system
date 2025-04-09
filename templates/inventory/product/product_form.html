@@ -1,0 +1,64 @@
+<!-- templates/inventory/product_form.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% if form.instance.id %}Editar{% else %}Novo{% endif %} Produto{% endblock %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'inventory:product_list' %}">Produtos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">
+            {% if form.instance.id %}Editar {{ form.instance.name }}{% else %}Novo Produto{% endif %}
+        </li>
+    </ol>
+</nav>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header bg-{% if form.instance.id %}warning{% else %}success{% endif %} text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-{% if form.instance.id %}edit{% else %}plus{% endif %}"></i>
+                    {% if form.instance.id %}Editar{% else %}Novo{% endif %} Produto
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.price|as_crispy_field }}
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.quantity|as_crispy_field }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.image|as_crispy_field }}
+                        </div>
+                    </div>
+                    
+                    {{ form.description|as_crispy_field }}
+                    {{ form.tags|as_crispy_field }}
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-{% if form.instance.id %}warning{% else %}success{% endif %}">
+                            <i class="fas fa-save"></i> Salvar
+                        </button>
+                        <a href="{% if form.instance.id %}{% url 'inventory:product_detail' form.instance.id %}{% else %}{% url 'inventory:product_list' %}{% endif %}" class="btn btn-secondary">
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
