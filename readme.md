@@ -47,7 +47,7 @@
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/sistema-estoque-django.git
+   git clone https://github.com/R0mi1y/inventory_system.git
    cd sistema-estoque-django
    ```
 
@@ -166,7 +166,7 @@ Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para d
 
 ## 📞 Suporte
 
-Para suporte, envie um email para seu-email@exemplo.com ou abra uma issue no repositório do GitHub.
+Para suporte, envie um email para edielromily123@exemplo.com ou abra uma issue no repositório do GitHub.
 
 ---
 
